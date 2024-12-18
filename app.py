@@ -56,8 +56,16 @@ def extract_text_from_file(uploaded_file):
         # Convert image to numpy array for preprocessing
         img_array = np.array(image)
         
-        # Preprocess image (optional: improve OCR accuracy)
-        gray = cv2.cvtColor(img_array, cv2.COLOR_RGB2GRAY)
+        # Preprocess image (resize and improve OCR accuracy)
+        img_array = cv2.resize(img_array, (1024, 1024))
+        
+        # Convert to grayscale if not already
+        if len(img_array.shape) == 3 and img_array.shape[2] == 3:
+            gray = cv2.cvtColor(img_array, cv2.COLOR_RGB2GRAY)
+        else:
+            gray = img_array  # Image is already grayscale
+        
+        # Apply thresholding
         gray = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
         
         # Extract text using Tesseract
@@ -85,6 +93,7 @@ def extract_text_from_file(uploaded_file):
     else:
         st.error(f"Unsupported file type: {uploaded_file.type}")
         return None
+
 
 def predict_category(resume_text):
     # Preprocess the resume text
