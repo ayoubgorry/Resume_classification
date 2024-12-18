@@ -19,7 +19,7 @@ def local_css(file_name):
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 # Download NLTK resources
-nltk.download('punkt_tab', quiet=True)
+nltk.download('punkt', quiet=True)
 nltk.download('stopwords', quiet=True)
 
 # Category mapping
