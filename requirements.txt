@@ -1,0 +1,12 @@
+streamlit
+scikit-learn
+nltk
+pandas
+numpy
+python-docx
+PyPDF2
+matplotlib
+seaborn
+pytesseract
+pillow
+opencv-python-headless
