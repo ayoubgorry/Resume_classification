@@ -10,3 +10,4 @@ seaborn
 pytesseract
 pillow
 opencv-python-headless
+subprocess
