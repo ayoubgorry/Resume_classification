@@ -14,6 +14,16 @@ import docx
 import PyPDF2
 
 pytesseract.pytesseract.tesseract_cmd = r'/usr/bin/tesseract'  # Update based on the environment
+import subprocess
+
+def check_tesseract():
+    try:
+        tesseract_version = subprocess.run(['tesseract', '--version'], capture_output=True, text=True)
+        return tesseract_version.stdout
+    except Exception as e:
+        return f"Tesseract Error: {e}"
+
+
 
 # Custom CSS for enhanced styling
 def local_css(file_name):
@@ -118,7 +128,7 @@ def main():
         layout="wide",
         initial_sidebar_state="expanded"
     )
-
+    st.write("Tesseract Version:", check_tesseract())
     # Add custom CSS
     st.markdown("""
     <style>
