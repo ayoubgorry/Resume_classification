@@ -13,6 +13,8 @@ import cv2
 import docx
 import PyPDF2
 
+pytesseract.pytesseract.tesseract_cmd = r'/usr/bin/tesseract'  # Update based on the environment
+
 # Custom CSS for enhanced styling
 def local_css(file_name):
     with open(file_name) as f:
