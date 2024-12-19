@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 tesseract-ocr
 libtesseract-dev
+=======
+tesseract-ocr
+libtesseract-dev
+>>>>>>> 0f76dc0e12606b459a24496b49f627ab5036f3ff
