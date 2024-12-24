@@ -1,57 +1,69 @@
-RESUME CLASSIFICATION AI
-=======================
+# Resume Classification AI
 
-Project Overview
-----------------
-Resume Classification AI is an intelligent Streamlit application that uses machine learning 
-to automatically categorize resumes into professional domains. By leveraging advanced 
-natural language processing and TF-IDF vectorization, this tool helps job seekers and 
-recruiters quickly understand the potential career path of a candidate.
+An intelligent Streamlit application that categorizes resumes into professional domains using advanced machine learning techniques. This tool aids job seekers and recruiters in quickly identifying career paths by leveraging natural language processing and TF-IDF vectorization.
 
-Features
---------
-* Multi-Format Support: Upload resumes in PDF, DOCX, TXT, and image formats
-* AI-Powered Classification: Predict resume category with high accuracy
-* User-Friendly Interface: Clean, modern Streamlit design
-* Comprehensive Career Insights: Provides recommendations based on predicted category
+---
 
-Technologies Used
------------------
-- Python
-- Streamlit
-- Scikit-learn
-- NLTK
-- OpenCV
-- Tesseract OCR
-- PyPDF2
-- python-docx
+## Features
 
-Installation
-------------
-1. Clone the repository:
+- **Multi-Format Support**: Upload resumes in PDF, DOCX, TXT, and image formats.
+- **AI-Powered Classification**: Predict resume categories with high accuracy.
+- **User-Friendly Interface**: Clean, modern Streamlit design for seamless interaction.
+- **Comprehensive Career Insights**: Provides tailored career recommendations based on predicted categories.
+
+---
+
+## Technologies Used
+
+- **Python**: Core programming language.
+- **Streamlit**: Framework for building interactive web apps.
+- **Scikit-learn**: Machine learning library for classification models.
+- **NLTK**: Toolkit for natural language processing.
+- **OpenCV & Tesseract OCR**: Extract text from images.
+- **PyPDF2**: Process PDF files.
+- **python-docx**: Read and parse DOCX files.
+
+---
+
+## Installation
+
+1. **Clone the repository:**
+   ```bash
    git clone https://github.com/AyoubGorry/resume-classification-ai.git
    cd resume-classification-ai
+   ```
 
-2. Install dependencies:
+2. **Install dependencies:**
+   ```bash
    pip install -r requirements.txt
+   ```
 
-3. Install Tesseract OCR:
-   - Windows: Download from Tesseract GitHub
-   - macOS: brew install tesseract
-   - Linux: sudo apt-get install tesseract-ocr
+3. **Install Tesseract OCR:**
+   - **Windows**: Download and install from [Tesseract GitHub](https://github.com/tesseract-ocr/tesseract)
+   - **macOS**: Run `brew install tesseract`
+   - **Linux**: Run `sudo apt-get install tesseract-ocr`
 
-Usage
-------
+---
+
+## Usage
+
 Run the Streamlit app:
+```bash
 streamlit run app.py
+```
 
-Supported Input Methods:
+### Supported Input Methods:
 - Upload resume file (PDF, DOCX, TXT, PNG, JPG)
-- Paste resume text directly
+- Paste resume text directly into the interface
 
-Supported Job Categories
------------------------
-The AI can classify resumes into 43 different professional categories, including:
+### Live Demo:
+- [Resume Classification AI](https://agresumeclassification.streamlit.app/)
+
+---
+
+## Supported Job Categories
+
+The AI can classify resumes into 43 distinct professional categories, including:
 - Software Development
 - Engineering
 - Business Analysis
@@ -60,34 +72,50 @@ The AI can classify resumes into 43 different professional categories, including
 - Marketing
 - And many more!
 
-How It Works
-------------
-1. Text Preprocessing
-   - Lowercase conversion
-   - Special character removal
-   - Stopword elimination
+---
 
-2. Feature Extraction
-   - TF-IDF Vectorization
+## How It Works
 
-3. Machine Learning Classification
-   - Trained on a diverse dataset of professional resumes
+1. **Text Preprocessing:**
+   - Converts text to lowercase.
+   - Removes special characters and stopwords.
 
-Contributing
-------------
-Contributions are welcome! Please feel free to submit a Pull Request.
+2. **Feature Extraction:**
+   - Utilizes TF-IDF Vectorization to encode textual data.
 
-License
---------
-This project is open-source and available under the MIT License.
+3. **Machine Learning Classification:**
+   - Trained on a diverse dataset of professional resumes to ensure robust predictions.
 
-Author
--------
-Ayoub Gorry
-- GitHub: https://github.com/AyoubGorry
-- LinkedIn: https://www.linkedin.com/in/ayoub-gorry-8772a0236
+---
 
-Acknowledgments
----------------
-- Inspired by the challenge of automating resume screening
-- Thanks to the open-source community for incredible tools and libraries
+## Contributing
+
+Contributions are welcome! If you’d like to improve the project, please:
+1. Fork the repository.
+2. Create a feature branch.
+3. Submit a pull request for review.
+
+---
+
+## License
+
+This project is open-source and available under the [MIT License](LICENSE).
+
+---
+
+## Author
+
+**Ayoub Gorry**
+
+- **GitHub**: [https://github.com/AyoubGorry](https://github.com/AyoubGorry)
+- **LinkedIn**: [https://www.linkedin.com/in/ayoub-gorry-8772a0236](https://www.linkedin.com/in/ayoub-gorry-8772a0236)
+
+---
+
+## Acknowledgments
+
+- Inspired by the challenge of automating resume screening.
+- Thanks to the open-source community for providing incredible tools and libraries that made this project possible.
+
+---
+
