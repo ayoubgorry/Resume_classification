@@ -34,20 +34,19 @@ model = pickle.load(open('./models/model.pkl', 'rb'))
 tfidf_vectorizer = pickle.load(open('./models/tfidf.pkl', 'rb'))
 
 def preprocess_text(text):
-    # Convert to lowercase
-    text = text.lower()
-    
-    # Remove special characters and digits
-    text = re.sub(r'[^a-zA-Z\s]', '', text)
-    
-    # Tokenize
-    tokens = word_tokenize(text)
-    
-    # Remove stopwords
+    url_pattern = re.compile(r'https?://\S+|www\.\S+')
+    email_pattern = re.compile(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b')
+
+    text = re.sub(url_pattern, '', text)
+    text = re.sub(email_pattern, '', text)
+    text = re.sub('[^\w\s]', '', text)
+
     stop_words = set(stopwords.words('english'))
-    tokens = [token for token in tokens if token not in stop_words]
-    
-    return ' '.join(tokens)
+    text = ' '.join(word for word in text.split() if word.lower() not in stop_words)
+
+    text = text.lower()
+
+    return text
 
 def extract_text_from_file(uploaded_file):
     """Extract text from various file types"""
@@ -56,26 +55,28 @@ def extract_text_from_file(uploaded_file):
     if uploaded_file.type.startswith('image/'):
         # Read the image
         image = Image.open(uploaded_file)
-        
-        # Convert image to numpy array for preprocessing
         img_array = np.array(image)
         
-        # Preprocess image (resize and improve OCR accuracy)
+        # Resize for consistency
         img_array = cv2.resize(img_array, (1024, 1024))
         
-        # Convert to grayscale if not already
-        if len(img_array.shape) == 3 and img_array.shape[2] == 3:
-            gray = cv2.cvtColor(img_array, cv2.COLOR_RGB2GRAY)
-        else:
-            gray = img_array  # Image is already grayscale
+        # Convert to grayscale
+        gray = cv2.cvtColor(img_array, cv2.COLOR_BGR2GRAY)
         
-        # Apply thresholding
-        gray = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
+        # Apply denoising
+        denoised = cv2.fastNlMeansDenoising(gray)
+        
+        # Apply CLAHE (Contrast Limited Adaptive Histogram Equalization)
+        clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
+        enhanced = clahe.apply(denoised)
+        
+        # Apply Otsu's thresholding
+        final = cv2.threshold(enhanced, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
         
         # Extract text using Tesseract
-        text = pytesseract.image_to_string(gray)
+        text = pytesseract.image_to_string(final)
         return text
-    
+
     # PDF file processing
     elif uploaded_file.type == 'application/pdf':
         pdf_reader = PyPDF2.PdfReader(uploaded_file)
