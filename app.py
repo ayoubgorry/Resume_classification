@@ -165,7 +165,7 @@ def main():
     """, unsafe_allow_html=True)
 
     # Title with icon
-    st.markdown("<h1 style='text-align: center; color: #2c3e50;'>📄 Resume Classification AI 🤖</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; color: #2c3e50;'>📄 CVGENiUS 🤖</h1>", unsafe_allow_html=True)
     
     # Subtitle
     st.markdown("<h3 style='text-align: center; color: #7f8c8d;'>Predict Your Career Path with AI</h3>", unsafe_allow_html=True)
